@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './ShoppingList.scss';
+import './ShoppingLists.scss';
 
 const ShoppingList = () => {
     return <h2>works</h2>;

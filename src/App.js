@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import NavBar from './ui/components/NavBar/NavBar';
-import ShoppingList from './ui/containers/ShoppingList/ShoppingList';
+import NavBar from './ui/components/common/NavBar/NavBar';
+import ShoppingList from './ui/containers/ShoppingLists/ShoppingLists';
 import ShoppingListItem from './ui/containers/ShoppingListItem/ShoppingListItem';
 
 import './App.scss';
