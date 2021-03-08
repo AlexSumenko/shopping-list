@@ -1,0 +1,10 @@
+@import '../../../assets/styles/variables';
+
+.navbar {
+    background-color: $shl-navbar-color;
+    color: $shl-main-color;
+    height: 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}

@@ -7,12 +7,10 @@
 }
 
 body {
-    max-width: $shl-max-body-width;
-    min-width: $shl-min-body-width;
     font-family: sans-serif;
     font-size: 1rem;
-    padding: 0 1rem;
     margin: auto;
     background-color: $shl-background-color;
     color: $shl-main-color;
+    text-align: center;
 }

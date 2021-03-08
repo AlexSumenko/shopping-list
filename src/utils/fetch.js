@@ -1,4 +1,4 @@
-import API_BASE_URL from './constants';
+import { API_BASE_URL } from './constants';
 
 export const httpRequest = (method, requestPath, requestData) => {
     return fetch(`${API_BASE_URL}${requestPath}`, {
