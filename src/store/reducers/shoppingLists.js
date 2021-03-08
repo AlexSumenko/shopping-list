@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     shoppingLists: [],
+    activeShoppingList: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,7 +15,11 @@ const reducer = (state = initialState, action) => {
             );
             return { ...state, shoppingLists: newShoppingLists };
         case actionTypes.CLEAR_SHOPPING_LISTS_FROM_STORE:
-            return initialState;
+            return { ...state, shoppingLists: [] };
+        case actionTypes.GET_SHOPPING_LIST:
+            return { ...state, activeShoppingList: action.payload };
+        case actionTypes.CLEAR_ACTIVE_SHOPPING_LIST_FROM_STORE:
+            return { ...state, activeShoppingList: {} };
         default:
             return state;
     }

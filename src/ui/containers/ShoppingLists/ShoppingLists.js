@@ -8,10 +8,17 @@ import ShoppingListsTable from '../../components/ShoppingLists/ShoppingListsTabl
 
 import './ShoppingLists.scss';
 
-const ShoppingList = ({ deleteShoppingList, saveShoppingLists }) => {
+const ShoppingList = ({
+    clearShoppingLists,
+    deleteShoppingList,
+    saveShoppingLists,
+}) => {
     useEffect(() => {
         saveShoppingLists();
-    }, [saveShoppingLists]);
+        return () => {
+            clearShoppingLists();
+        };
+    }, [clearShoppingLists, saveShoppingLists]);
     // useEffect(() => {
     //     httpRequest('POST', 'shopping-lists.json', {
     //         name: 'TEST4',
@@ -39,6 +46,8 @@ const dispatchStateToProps = dispatch => {
             dispatch(actions.getShoppingListsFromBackend()),
         deleteShoppingList: shListId =>
             dispatch(actions.deleteShoppingListFromBackend(shListId)),
+        clearShoppingLists: () =>
+            dispatch(actions.clearShoppingListsFromStore()),
     };
 };
 

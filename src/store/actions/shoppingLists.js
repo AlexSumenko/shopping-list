@@ -7,6 +7,12 @@ export const clearShoppingListsFromStore = () => {
     };
 };
 
+export const clearActiveShoppingListFromStore = () => {
+    return {
+        type: actionTypes.CLEAR_ACTIVE_SHOPPING_LIST_FROM_STORE,
+    };
+};
+
 const saveShoppingListsInStore = shoppingLists => {
     return {
         type: actionTypes.GET_SHOPPING_LISTS,
@@ -18,6 +24,13 @@ const deleteShoppingListFromStore = shoppingListId => {
     return {
         type: actionTypes.DELETE_SHOPPING_LIST,
         payload: shoppingListId,
+    };
+};
+
+const setActiveShoppingListInStore = shoppingList => {
+    return {
+        type: actionTypes.GET_SHOPPING_LIST,
+        payload: shoppingList,
     };
 };
 
@@ -40,6 +53,16 @@ export const deleteShoppingListFromBackend = shoppingListId => {
         httpRequest('DELETE', `shopping-lists/${shoppingListId}.json`)
             .then(res => {
                 dispatch(deleteShoppingListFromStore(shoppingListId));
+            })
+            .catch(err => alert(err));
+    };
+};
+
+export const getShoppingListFromBackend = shoppingListId => {
+    return dispatch => {
+        httpRequest('GET', `shopping-lists/${shoppingListId}.json`)
+            .then(res => {
+                dispatch(setActiveShoppingListInStore(res));
             })
             .catch(err => alert(err));
     };
