@@ -1,14 +1,56 @@
 import React, { useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { selectShoppingLists } from '../../../../store/selectors/shoppingLists';
 
 import './ShoppingListsTable.scss';
 
-const ShoppingListsTable = ({ shoppingLists }) => {
+const ShoppingListsTable = props => {
+    const { deleted, shoppingLists } = props;
+    const onShoppingListClick = shListId => {
+        props.history.push(`${shListId}/edit`);
+    };
+
+    let shoppingListsTable = <div>No shopping lists</div>;
+
+    if (shoppingLists && shoppingLists.length > 0) {
+        shoppingListsTable = (
+            <table>
+                <tbody>
+                    {shoppingLists.map(shList => {
+                        return (
+                            <tr key={shList.key}>
+                                <td
+                                    className='table-cell-clickable'
+                                    onClick={() =>
+                                        onShoppingListClick(shList.key)
+                                    }
+                                >{`${shList.name} Total: ${
+                                    shList.items.length
+                                } Bought: ${shList.items.reduce(
+                                    (acc, el) => el.bought + acc,
+                                    0
+                                )}`}</td>
+                                <td>
+                                    <button
+                                        onClick={deleted.bind(this, shList.key)}
+                                    >
+                                        delete
+                                    </button>
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        );
+    }
+
     useEffect(() => {
         console.log(shoppingLists);
     });
-    return <h3>Works</h3>;
+
+    return <>{shoppingListsTable}</>;
 };
 
 const mapStateToProps = state => {
@@ -17,4 +59,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(ShoppingListsTable);
+export default connect(mapStateToProps)(withRouter(ShoppingListsTable));

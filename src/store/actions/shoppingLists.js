@@ -14,6 +14,13 @@ const saveShoppingListsInStore = shoppingLists => {
     };
 };
 
+const deleteShoppingListFromStore = shoppingListId => {
+    return {
+        type: actionTypes.DELETE_SHOPPING_LIST,
+        payload: shoppingListId,
+    };
+};
+
 export const getShoppingListsFromBackend = () => {
     return dispatch => {
         httpRequest('GET', 'shopping-lists.json')
@@ -23,6 +30,16 @@ export const getShoppingListsFromBackend = () => {
                     shoppingLists.push({ key, ...res[key] });
                 }
                 dispatch(saveShoppingListsInStore(shoppingLists));
+            })
+            .catch(err => alert(err));
+    };
+};
+
+export const deleteShoppingListFromBackend = shoppingListId => {
+    return dispatch => {
+        httpRequest('DELETE', `shopping-lists/${shoppingListId}.json`)
+            .then(res => {
+                dispatch(deleteShoppingListFromStore(shoppingListId));
             })
             .catch(err => alert(err));
     };
