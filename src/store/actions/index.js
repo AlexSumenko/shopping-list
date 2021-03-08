@@ -1,1 +1,4 @@
-export { clearShoppingListsFromStore } from './shoppingLists';
+export {
+    clearShoppingListsFromStore,
+    getShoppingListsFromBackend,
+} from './shoppingLists';

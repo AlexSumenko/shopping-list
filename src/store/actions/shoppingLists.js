@@ -1,4 +1,3 @@
-import { act } from 'react-dom/cjs/react-dom-test-utils.development';
 import * as actionTypes from './actionTypes';
 import { httpRequest } from '../../utils/fetch';
 
@@ -15,8 +14,16 @@ const saveShoppingListsInStore = shoppingLists => {
     };
 };
 
-// export const getShoppingListsFromBackend = () => {
-//   return dispatch => {
-//     httpRequest('GET')
-//   }
-// }
+export const getShoppingListsFromBackend = () => {
+    return dispatch => {
+        httpRequest('GET', 'shopping-lists.json')
+            .then(res => {
+                const shoppingLists = [];
+                for (let key in res) {
+                    shoppingLists.push({ key, ...res[key] });
+                }
+                dispatch(saveShoppingListsInStore(shoppingLists));
+            })
+            .catch(err => alert(err));
+    };
+};
