@@ -4,6 +4,7 @@ import * as actions from '../../../store/actions/index';
 import { selectActiveShoppingList } from '../../../store/selectors/shoppingLists';
 
 import NavBar from '../../components/common/NavBar/NavBar';
+import ShoppingListItemTable from '../../components/ShoppingListItem/ShoppingListItemTable/ShoppingListItemTable';
 
 import './ShoppingListItem.scss';
 
@@ -24,7 +25,9 @@ const ShoppingListItem = props => {
     return (
         <>
             <NavBar>{activeShoppingList.name}</NavBar>
-            <main className='app'>123</main>
+            <main className='app'>
+                <ShoppingListItemTable shoppingList={activeShoppingList} />
+            </main>
         </>
     );
 };

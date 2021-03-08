@@ -11,7 +11,7 @@ const ShoppingListsTable = props => {
         props.history.push(`${shListId}/edit`);
     };
 
-    let shoppingListsTable = <div>No shopping lists</div>;
+    let shoppingListsTable = <p>Loading...</p>;
 
     if (shoppingLists && shoppingLists.length > 0) {
         shoppingListsTable = (
