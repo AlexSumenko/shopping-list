@@ -11,6 +11,7 @@ import ShoppingListsTable from '../../components/ShoppingLists/ShoppingListsTabl
 import './ShoppingLists.scss';
 
 const ShoppingList = ({
+    addShoppingList,
     clearShoppingLists,
     deleteShoppingList,
     saveShoppingLists,
@@ -34,7 +35,7 @@ const ShoppingList = ({
         <>
             <NavBar justify='center'>Shopping Lists</NavBar>
             <main className='app'>
-                <Input />
+                <Input added={shoppingList => addShoppingList(shoppingList)} />
                 <ShoppingListsTable
                     deleted={shListId => deleteShoppingList(shListId)}
                 />
@@ -47,6 +48,8 @@ const dispatchStateToProps = dispatch => {
     return {
         saveShoppingLists: () =>
             dispatch(actions.getShoppingListsFromBackend()),
+        addShoppingList: shoppingList =>
+            dispatch(actions.addShoppingListToBackend(shoppingList)),
         deleteShoppingList: shListId =>
             dispatch(actions.deleteShoppingListFromBackend(shListId)),
         clearShoppingLists: () =>

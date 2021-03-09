@@ -12,22 +12,21 @@ import ShoppingListItemTable from '../../components/ShoppingListItem/ShoppingLis
 
 import './ShoppingListItem.scss';
 
-const ShoppingListItem = props => {
-    const {
-        activeShoppingList,
-        clearActiveShoppingList,
-        deleteShoppingListProduct,
-        getActiveShoppingList,
-    } = props;
-
+const ShoppingListItem = ({
+    activeShoppingList,
+    clearActiveShoppingList,
+    deleteShoppingListProduct,
+    getActiveShoppingList,
+    match,
+}) => {
     console.log(activeShoppingList);
 
     useEffect(() => {
-        getActiveShoppingList(props.match.params.id);
+        getActiveShoppingList(match.params.id);
         return () => {
             clearActiveShoppingList();
         };
-    }, [clearActiveShoppingList, getActiveShoppingList, props.match.params.id]);
+    }, [clearActiveShoppingList, getActiveShoppingList, match.params.id]);
 
     return (
         <>
