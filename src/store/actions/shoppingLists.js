@@ -46,8 +46,19 @@ export const getShoppingListsFromBackend = () => {
         httpRequest('GET', 'shopping-lists.json')
             .then(res => {
                 const shoppingLists = [];
-                for (let key in res) {
-                    shoppingLists.push({ key, ...res[key] });
+                for (let shListKey in res) {
+                    const newItems = [];
+                    for (let itemKey in res[shListKey].items) {
+                        newItems.push({
+                            key: itemKey,
+                            ...res[shListKey].items[itemKey],
+                        });
+                    }
+                    shoppingLists.push({
+                        key: shListKey,
+                        name: res[shListKey].name,
+                        items: newItems,
+                    });
                 }
                 dispatch(saveShoppingListsInStore(shoppingLists));
             })
