@@ -22,12 +22,8 @@ const Input = ({ added, placeholder }) => {
                 ref={inputRef}
                 placeholder={placeholder}
             ></input>
-            <button
-                // onClick={e => onInputSubmit(e)}
-                className='input__button'
-                type='submit'
-            >
-                Submit
+            <button className='input__button clickable' type='submit'>
+                {'\u2705'}
             </button>
         </form>
     );

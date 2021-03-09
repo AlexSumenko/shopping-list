@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { TrashIcon } from '../../common/Images/Images';
+
 import './ShoppingListItemTable.scss';
 
 const ShoppingListItemTable = ({ deleted, shoppingList, toggled }) => {
@@ -16,7 +18,9 @@ const ShoppingListItemTable = ({ deleted, shoppingList, toggled }) => {
                         return (
                             <tr key={shListEl.key}>
                                 <td
-                                    className={boughtClass}
+                                    className={['clickable', boughtClass].join(
+                                        ' '
+                                    )}
                                     onClick={toggled.bind(
                                         this,
                                         shoppingList.key,
@@ -27,15 +31,16 @@ const ShoppingListItemTable = ({ deleted, shoppingList, toggled }) => {
                                     {shListEl.product}
                                 </td>
                                 <td className='table__delete-column'>
-                                    <button
+                                    <div
+                                        className='clickable'
                                         onClick={deleted.bind(
                                             this,
                                             shoppingList.key,
                                             shListEl.key
                                         )}
                                     >
-                                        delete
-                                    </button>
+                                        <TrashIcon />
+                                    </div>
                                 </td>
                             </tr>
                         );

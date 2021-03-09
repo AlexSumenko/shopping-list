@@ -3,6 +3,7 @@ import { useHistory, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { TrashIcon } from '../../common/Images/Images';
 import { selectShoppingLists } from '../../../../store/selectors/shoppingLists';
 
 import './ShoppingListsTable.scss';
@@ -23,7 +24,7 @@ const ShoppingListsTable = ({ deleted, shoppingLists }) => {
                         return (
                             <tr key={shList.key}>
                                 <td
-                                    className='table-cell-clickable'
+                                    className='clickable'
                                     onClick={() =>
                                         onShoppingListClick(shList.key)
                                     }
@@ -36,11 +37,12 @@ const ShoppingListsTable = ({ deleted, shoppingLists }) => {
                                     ) ?? 0
                                 }`}</td>
                                 <td className='table__delete-column'>
-                                    <button
+                                    <div
+                                        className='clickable'
                                         onClick={deleted.bind(this, shList.key)}
                                     >
-                                        delete
-                                    </button>
+                                        <TrashIcon />
+                                    </div>
                                 </td>
                             </tr>
                         );

@@ -1,3 +1,5 @@
+@import '../../../../assets/styles/variables';
+
 .input {
     margin-bottom: 1rem;
     position: relative;
@@ -14,5 +16,9 @@
         right: 1rem;
         top: 50%;
         transform: translateY(-50%);
+        outline: none;
+        border: none;
+        background-color: $shl-background-color;
+        font-size: 24px;
     }
 }
