@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './ShoppingListItemTable.scss';
 
-const ShoppingListItemTable = ({ deleted, shoppingList }) => {
+const ShoppingListItemTable = ({ deleted, shoppingList, toggled }) => {
     let shoppingListTable = <p>Loading...</p>;
     if (shoppingList.items && shoppingList.items.length > 0) {
         shoppingListTable = (
@@ -15,7 +15,15 @@ const ShoppingListItemTable = ({ deleted, shoppingList }) => {
                         ).toString();
                         return (
                             <tr key={shListEl.key}>
-                                <td className={boughtClass}>
+                                <td
+                                    className={boughtClass}
+                                    onClick={toggled.bind(
+                                        this,
+                                        shoppingList.key,
+                                        shListEl.key,
+                                        !shListEl.bought
+                                    )}
+                                >
                                     {shListEl.product}
                                 </td>
                                 <td className='table__delete-column'>

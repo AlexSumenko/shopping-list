@@ -18,6 +18,7 @@ const ShoppingListItem = ({
     clearActiveShoppingList,
     deleteShoppingListProduct,
     getActiveShoppingList,
+    toggleProductStatus,
     match,
 }) => {
     useEffect(() => {
@@ -51,6 +52,9 @@ const ShoppingListItem = ({
                     deleted={(shListId, productKey) =>
                         deleteShoppingListProduct(shListId, productKey)
                     }
+                    toggled={(shListId, productKey, status) =>
+                        toggleProductStatus(shListId, productKey, status)
+                    }
                 />
             </main>
         </>
@@ -80,6 +84,14 @@ const mapDispatchToProps = dispatch => {
                     productKey
                 )
             ),
+        toggleProductStatus: (shListId, productKey, status) =>
+            dispatch(
+                actions.toggleProductBoughtStatusOnBackend(
+                    shListId,
+                    productKey,
+                    status
+                )
+            ),
     };
 };
 
@@ -87,6 +99,8 @@ ShoppingListItem.propTypes = {
     getActiveShoppingList: PropTypes.func,
     clearActiveShoppingList: PropTypes.func,
     deleteShoppingListProduct: PropTypes.func,
+    addProductToShoppingList: PropTypes.func,
+    toggleProductStatus: PropTypes.func,
     activeShoppingList: PropTypes.shape({
         name: PropTypes.string,
         items: PropTypes.arrayOf(

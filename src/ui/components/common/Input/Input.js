@@ -15,7 +15,7 @@ const Input = ({ added, placeholder }) => {
     };
 
     return (
-        <div className='input'>
+        <form className='input' onSubmit={e => onInputSubmit(e)}>
             <input
                 className='input__element'
                 type='text'
@@ -23,13 +23,13 @@ const Input = ({ added, placeholder }) => {
                 placeholder={placeholder}
             ></input>
             <button
-                onClick={e => onInputSubmit(e)}
+                // onClick={e => onInputSubmit(e)}
                 className='input__button'
-                type='button'
+                type='submit'
             >
                 Submit
             </button>
-        </div>
+        </form>
     );
 };
 

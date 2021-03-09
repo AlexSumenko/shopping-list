@@ -119,13 +119,32 @@ export const addProductToShoppingListOnBackend = (
     };
 };
 
-export const deleteShoppingListProductFromBackend = (shListId, productKey) => {
+export const deleteShoppingListProductFromBackend = (
+    shoppingListId,
+    productKey
+) => {
     return dispatch => {
         httpRequest(
             'DELETE',
-            `shopping-lists/${shListId}/items/${productKey}.json`
+            `shopping-lists/${shoppingListId}/items/${productKey}.json`
         )
             .then(dispatch(deleteShoppingListProductInStore(productKey)))
+            .catch(err => alert(err));
+    };
+};
+
+export const toggleProductBoughtStatusOnBackend = (
+    shoppingListId,
+    productKey,
+    status
+) => {
+    return dispatch => {
+        httpRequest(
+            'PUT',
+            `shopping-lists/${shoppingListId}/items/${productKey}/bought.json`,
+            status
+        )
+            .then(res => dispatch(getShoppingListFromBackend(shoppingListId)))
             .catch(err => alert(err));
     };
 };

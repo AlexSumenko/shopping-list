@@ -7,4 +7,5 @@ export {
     deleteShoppingListProductFromBackend,
     getShoppingListFromBackend,
     getShoppingListsFromBackend,
+    toggleProductBoughtStatusOnBackend,
 } from './shoppingLists';
