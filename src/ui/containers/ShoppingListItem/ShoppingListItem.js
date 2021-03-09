@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import PropTypes from 'prop-types';
+
 import { selectActiveShoppingList } from '../../../store/selectors/shoppingLists';
 
 import BackButton from '../../components/common/BackButton/BackButton';
@@ -15,6 +17,8 @@ const ShoppingListItem = props => {
         clearActiveShoppingList,
         getActiveShoppingList,
     } = props;
+
+    console.log(activeShoppingList);
 
     useEffect(() => {
         getActiveShoppingList(props.match.params.id);
@@ -52,6 +56,20 @@ const mapDispatchToProps = dispatch => {
         clearActiveShoppingList: () =>
             dispatch(actions.clearActiveShoppingListFromStore()),
     };
+};
+
+ShoppingListItem.propTypes = {
+    getActiveShoppingList: PropTypes.func,
+    clearActiveShoppingList: PropTypes.func,
+    activeShoppingList: PropTypes.shape({
+        name: PropTypes.string,
+        items: PropTypes.arrayOf(
+            PropTypes.shape({
+                product: PropTypes.string,
+                bought: PropTypes.bool,
+            })
+        ),
+    }),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingListItem);

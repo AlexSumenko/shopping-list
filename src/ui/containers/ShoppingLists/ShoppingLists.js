@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import PropTypes from 'prop-types';
 // import { httpRequest } from '../../../utils/fetch';
 
 import NavBar from '../../components/common/NavBar/NavBar';
@@ -49,6 +50,12 @@ const dispatchStateToProps = dispatch => {
         clearShoppingLists: () =>
             dispatch(actions.clearShoppingListsFromStore()),
     };
+};
+
+ShoppingList.propTypes = {
+    saveShoppingLists: PropTypes.func,
+    deleteShoppingList: PropTypes.func,
+    clearShoppingLists: PropTypes.func,
 };
 
 export default connect(null, dispatchStateToProps)(ShoppingList);

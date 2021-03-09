@@ -1,18 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './NavBar.scss';
 
-const NavBar = props => {
+const NavBar = ({ children, justify }) => {
     return (
         <nav className='navbar'>
             <div
                 className='navbar__container'
-                style={{ justifyContent: props.justify }}
+                style={{ justifyContent: justify }}
             >
-                {props.children}
+                {children}
             </div>
         </nav>
     );
+};
+
+NavBar.propTypes = {
+    justify: PropTypes.string,
 };
 
 export default NavBar;

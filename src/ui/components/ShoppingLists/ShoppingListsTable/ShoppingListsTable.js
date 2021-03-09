@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { useHistory, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { selectShoppingLists } from '../../../../store/selectors/shoppingLists';
 
 import './ShoppingListsTable.scss';
 
-const ShoppingListsTable = props => {
-    const { deleted, shoppingLists } = props;
+const ShoppingListsTable = ({ deleted, shoppingLists }) => {
+    const history = useHistory();
     const onShoppingListClick = shListId => {
-        props.history.push(`${shListId}/edit`);
+        history.push(`${shListId}/edit`);
     };
 
     let shoppingListsTable = <p>Loading...</p>;
@@ -46,10 +48,6 @@ const ShoppingListsTable = props => {
         );
     }
 
-    useEffect(() => {
-        console.log(shoppingLists);
-    });
-
     return <>{shoppingListsTable}</>;
 };
 
@@ -57,6 +55,22 @@ const mapStateToProps = state => {
     return {
         shoppingLists: selectShoppingLists(state.shl),
     };
+};
+
+ShoppingListsTable.propTypes = {
+    deleted: PropTypes.func,
+    shoppingLists: PropTypes.arrayOf(
+        PropTypes.shape({
+            key: PropTypes.string,
+            name: PropTypes.string,
+            items: PropTypes.arrayOf(
+                PropTypes.shape({
+                    product: PropTypes.string,
+                    bought: PropTypes.bool,
+                })
+            ),
+        })
+    ),
 };
 
 export default connect(mapStateToProps)(withRouter(ShoppingListsTable));
