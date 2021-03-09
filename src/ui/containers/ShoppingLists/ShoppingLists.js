@@ -30,7 +30,7 @@ const ShoppingList = ({
     // });
     return (
         <>
-            <NavBar>Shopping Lists</NavBar>
+            <NavBar justify='center'>Shopping Lists</NavBar>
             <main className='app'>
                 <ShoppingListsTable
                     deleted={shListId => deleteShoppingList(shListId)}

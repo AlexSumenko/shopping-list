@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import { selectActiveShoppingList } from '../../../store/selectors/shoppingLists';
 
+import BackButton from '../../components/common/BackButton/BackButton';
 import NavBar from '../../components/common/NavBar/NavBar';
 import ShoppingListItemTable from '../../components/ShoppingListItem/ShoppingListItemTable/ShoppingListItemTable';
 
@@ -24,7 +25,13 @@ const ShoppingListItem = props => {
 
     return (
         <>
-            <NavBar>{activeShoppingList.name}</NavBar>
+            <NavBar justify='space-between'>
+                <>
+                    <BackButton />
+                    <div>{activeShoppingList.name}</div>
+                    <div></div>
+                </>
+            </NavBar>
             <main className='app'>
                 <ShoppingListItemTable shoppingList={activeShoppingList} />
             </main>
