@@ -3,18 +3,32 @@ import PropTypes from 'prop-types';
 
 import './ShoppingListItemTable.scss';
 
-const ShoppingListItemTable = ({ shoppingList }) => {
+const ShoppingListItemTable = ({ deleted, shoppingList }) => {
+    console.log(shoppingList);
     let shoppingListTable = <p>Loading...</p>;
     if (shoppingList.items && shoppingList.items.length > 0) {
         shoppingListTable = (
             <table>
                 <tbody>
                     {shoppingList.items.map((shListEl, idx) => {
+                        const boughtClass = (
+                            shListEl.bought && 'bought'
+                        ).toString();
                         return (
                             <tr key={`${shListEl.name}-${idx}`}>
-                                <td>{shListEl.product}</td>
+                                <td className={boughtClass}>
+                                    {shListEl.product}
+                                </td>
                                 <td>
-                                    <button>delete</button>
+                                    <button
+                                        onClick={deleted.bind(
+                                            this,
+                                            shoppingList.key,
+                                            idx
+                                        )}
+                                    >
+                                        delete
+                                    </button>
                                 </td>
                             </tr>
                         );
@@ -28,7 +42,9 @@ const ShoppingListItemTable = ({ shoppingList }) => {
 };
 
 ShoppingListItemTable.propTypes = {
+    deleted: PropTypes.func,
     shoppingList: PropTypes.shape({
+        key: PropTypes.string,
         name: PropTypes.string,
         items: PropTypes.arrayOf(
             PropTypes.shape({

@@ -34,6 +34,13 @@ const setActiveShoppingListInStore = shoppingList => {
     };
 };
 
+const deleteShoppingListProductInStore = productIndex => {
+    return {
+        type: actionTypes.DELETE_SHOPPING_LIST_PRODUCT,
+        payload: productIndex,
+    };
+};
+
 export const getShoppingListsFromBackend = () => {
     return dispatch => {
         httpRequest('GET', 'shopping-lists.json')
@@ -51,9 +58,7 @@ export const getShoppingListsFromBackend = () => {
 export const deleteShoppingListFromBackend = shoppingListId => {
     return dispatch => {
         httpRequest('DELETE', `shopping-lists/${shoppingListId}.json`)
-            .then(res => {
-                dispatch(deleteShoppingListFromStore(shoppingListId));
-            })
+            .then(dispatch(deleteShoppingListFromStore(shoppingListId)))
             .catch(err => alert(err));
     };
 };
@@ -62,8 +67,23 @@ export const getShoppingListFromBackend = shoppingListId => {
     return dispatch => {
         httpRequest('GET', `shopping-lists/${shoppingListId}.json`)
             .then(res => {
-                dispatch(setActiveShoppingListInStore(res));
+                let shoppingList = { key: shoppingListId, ...res };
+                dispatch(setActiveShoppingListInStore(shoppingList));
             })
+            .catch(err => alert(err));
+    };
+};
+
+export const deleteShoppingListProductFromBackend = (
+    shListId,
+    productIndex
+) => {
+    return dispatch => {
+        httpRequest(
+            'DELETE',
+            `shopping-lists/${shListId}/items/${productIndex}.json`
+        )
+            .then(dispatch(deleteShoppingListProductInStore(productIndex)))
             .catch(err => alert(err));
     };
 };

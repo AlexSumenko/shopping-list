@@ -4,6 +4,7 @@ import * as actions from '../../../store/actions/index';
 import PropTypes from 'prop-types';
 // import { httpRequest } from '../../../utils/fetch';
 
+import Input from '../../components/common/Input/Input';
 import NavBar from '../../components/common/NavBar/NavBar';
 import ShoppingListsTable from '../../components/ShoppingLists/ShoppingListsTable/ShoppingListsTable';
 
@@ -33,6 +34,7 @@ const ShoppingList = ({
         <>
             <NavBar justify='center'>Shopping Lists</NavBar>
             <main className='app'>
+                <Input />
                 <ShoppingListsTable
                     deleted={shListId => deleteShoppingList(shListId)}
                 />

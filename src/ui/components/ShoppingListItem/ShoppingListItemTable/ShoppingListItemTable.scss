@@ -1,0 +1,6 @@
+@import '../../../../assets/styles/variables';
+
+.bought {
+    text-decoration: line-through;
+    background-color: $shl-bought-color;
+}

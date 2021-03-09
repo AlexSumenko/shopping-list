@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { selectActiveShoppingList } from '../../../store/selectors/shoppingLists';
 
 import BackButton from '../../components/common/BackButton/BackButton';
+import Input from '../../components/common/Input/Input';
 import NavBar from '../../components/common/NavBar/NavBar';
 import ShoppingListItemTable from '../../components/ShoppingListItem/ShoppingListItemTable/ShoppingListItemTable';
 
@@ -15,6 +16,7 @@ const ShoppingListItem = props => {
     const {
         activeShoppingList,
         clearActiveShoppingList,
+        deleteShoppingListProduct,
         getActiveShoppingList,
     } = props;
 
@@ -37,7 +39,13 @@ const ShoppingListItem = props => {
                 </>
             </NavBar>
             <main className='app'>
-                <ShoppingListItemTable shoppingList={activeShoppingList} />
+                <Input />
+                <ShoppingListItemTable
+                    shoppingList={activeShoppingList}
+                    deleted={(shListId, productIndex) =>
+                        deleteShoppingListProduct(shListId, productIndex)
+                    }
+                />
             </main>
         </>
     );
@@ -55,6 +63,13 @@ const mapDispatchToProps = dispatch => {
             dispatch(actions.getShoppingListFromBackend(shListId)),
         clearActiveShoppingList: () =>
             dispatch(actions.clearActiveShoppingListFromStore()),
+        deleteShoppingListProduct: (shListId, productIndex) =>
+            dispatch(
+                actions.deleteShoppingListProductFromBackend(
+                    shListId,
+                    productIndex
+                )
+            ),
     };
 };
 
