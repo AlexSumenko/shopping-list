@@ -27,10 +27,10 @@ const setActiveShoppingListInStore = shoppingList => {
     };
 };
 
-const deleteShoppingListProductInStore = productIndex => {
+const deleteShoppingListProductInStore = productKey => {
     return {
         type: actionTypes.DELETE_SHOPPING_LIST_PRODUCT,
-        payload: productIndex,
+        payload: productKey,
     };
 };
 
@@ -55,9 +55,9 @@ export const getShoppingListsFromBackend = () => {
     };
 };
 
-export const addShoppingListToBackend = shoppingList => {
+export const addShoppingListToBackend = shoppingListName => {
     return dispatch => {
-        httpRequest('POST', 'shopping-lists.json', shoppingList)
+        httpRequest('POST', 'shopping-lists.json', { name: shoppingListName })
             .then(res => {
                 dispatch(getShoppingListsFromBackend());
             })
@@ -77,23 +77,44 @@ export const getShoppingListFromBackend = shoppingListId => {
     return dispatch => {
         httpRequest('GET', `shopping-lists/${shoppingListId}.json`)
             .then(res => {
-                let shoppingList = { key: shoppingListId, ...res };
+                let newItems = [];
+                for (let key in res.items) {
+                    newItems.push({ key, ...res.items[key] });
+                }
+                const shoppingList = {
+                    key: shoppingListId,
+                    items: newItems,
+                    name: res.name,
+                };
                 dispatch(setActiveShoppingListInStore(shoppingList));
             })
             .catch(err => alert(err));
     };
 };
 
-export const deleteShoppingListProductFromBackend = (
-    shListId,
-    productIndex
+export const addProductToShoppingListOnBackend = (
+    shoppingListId,
+    productName
 ) => {
+    return dispatch => {
+        httpRequest('POST', `shopping-lists/${shoppingListId}/items.json`, {
+            product: productName,
+            bought: false,
+        })
+            .then(res => {
+                dispatch(getShoppingListFromBackend(shoppingListId));
+            })
+            .catch(err => alert(err));
+    };
+};
+
+export const deleteShoppingListProductFromBackend = (shListId, productKey) => {
     return dispatch => {
         httpRequest(
             'DELETE',
-            `shopping-lists/${shListId}/items/${productIndex}.json`
+            `shopping-lists/${shListId}/items/${productKey}.json`
         )
-            .then(dispatch(deleteShoppingListProductInStore(productIndex)))
+            .then(dispatch(deleteShoppingListProductInStore(productKey)))
             .catch(err => alert(err));
     };
 };

@@ -1,17 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import './Input.scss';
 
-const Input = ({ added }) => {
+const Input = ({ added, placeholder }) => {
     const inputRef = useRef('');
+
+    useLayoutEffect(() => inputRef.current.focus());
 
     const onInputSubmit = e => {
         e.preventDefault();
-        const shoppingList = {
-            name: inputRef?.current?.value,
-            items: [{ product: 'test', bought: false }],
-        };
-        added(shoppingList);
+        added(inputRef?.current?.value.trim());
         inputRef.current.value = '';
     };
 
@@ -21,7 +20,7 @@ const Input = ({ added }) => {
                 className='input__element'
                 type='text'
                 ref={inputRef}
-                placeholder='Add new shopping list'
+                placeholder={placeholder}
             ></input>
             <button
                 onClick={e => onInputSubmit(e)}
@@ -32,6 +31,15 @@ const Input = ({ added }) => {
             </button>
         </div>
     );
+};
+
+Input.propTypes = {
+    added: PropTypes.func,
+    placeholder: PropTypes.string,
+};
+
+Input.defaultProps = {
+    placeholder: 'Please enter a value',
 };
 
 export default Input;

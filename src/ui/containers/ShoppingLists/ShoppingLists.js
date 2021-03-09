@@ -35,7 +35,12 @@ const ShoppingList = ({
         <>
             <NavBar justify='center'>Shopping Lists</NavBar>
             <main className='app'>
-                <Input added={shoppingList => addShoppingList(shoppingList)} />
+                <Input
+                    placeholder='Add new shopping list'
+                    added={shoppingListName =>
+                        addShoppingList(shoppingListName)
+                    }
+                />
                 <ShoppingListsTable
                     deleted={shListId => deleteShoppingList(shListId)}
                 />
@@ -48,8 +53,8 @@ const dispatchStateToProps = dispatch => {
     return {
         saveShoppingLists: () =>
             dispatch(actions.getShoppingListsFromBackend()),
-        addShoppingList: shoppingList =>
-            dispatch(actions.addShoppingListToBackend(shoppingList)),
+        addShoppingList: shoppingListName =>
+            dispatch(actions.addShoppingListToBackend(shoppingListName)),
         deleteShoppingList: shListId =>
             dispatch(actions.deleteShoppingListFromBackend(shListId)),
         clearShoppingLists: () =>
@@ -58,6 +63,7 @@ const dispatchStateToProps = dispatch => {
 };
 
 ShoppingList.propTypes = {
+    addShoppingList: PropTypes.func,
     saveShoppingLists: PropTypes.func,
     deleteShoppingList: PropTypes.func,
     clearShoppingLists: PropTypes.func,

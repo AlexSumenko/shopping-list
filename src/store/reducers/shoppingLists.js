@@ -19,13 +19,17 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_SHOPPING_LIST:
             return { ...state, activeShoppingList: action.payload };
         case actionTypes.DELETE_SHOPPING_LIST_PRODUCT:
-            const newActiveShoppingList = {
+            const newShoppingList = {
+                name: state.activeShoppingList.name,
+                key: state.activeShoppingList.key,
                 items: [...state.activeShoppingList.items].filter(
-                    (item, idx) => idx !== action.payload
+                    item => item.key !== action.payload
                 ),
-                ...state.activeShoppingList,
             };
-            return { ...state, activeShoppingList: newActiveShoppingList };
+            return {
+                ...state,
+                activeShoppingList: newShoppingList,
+            };
         case actionTypes.CLEAR_ACTIVE_SHOPPING_LIST_FROM_STORE:
             return { ...state, activeShoppingList: {} };
         default:

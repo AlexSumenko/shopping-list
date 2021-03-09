@@ -14,13 +14,12 @@ import './ShoppingListItem.scss';
 
 const ShoppingListItem = ({
     activeShoppingList,
+    addProductToShoppingList,
     clearActiveShoppingList,
     deleteShoppingListProduct,
     getActiveShoppingList,
     match,
 }) => {
-    console.log(activeShoppingList);
-
     useEffect(() => {
         getActiveShoppingList(match.params.id);
         return () => {
@@ -38,11 +37,19 @@ const ShoppingListItem = ({
                 </>
             </NavBar>
             <main className='app'>
-                <Input />
+                <Input
+                    placeholder='Add new product'
+                    added={productName =>
+                        addProductToShoppingList(
+                            activeShoppingList.key,
+                            productName
+                        )
+                    }
+                />
                 <ShoppingListItemTable
                     shoppingList={activeShoppingList}
-                    deleted={(shListId, productIndex) =>
-                        deleteShoppingListProduct(shListId, productIndex)
+                    deleted={(shListId, productKey) =>
+                        deleteShoppingListProduct(shListId, productKey)
                     }
                 />
             </main>
@@ -58,15 +65,19 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        addProductToShoppingList: (shListId, productName) =>
+            dispatch(
+                actions.addProductToShoppingListOnBackend(shListId, productName)
+            ),
         getActiveShoppingList: shListId =>
             dispatch(actions.getShoppingListFromBackend(shListId)),
         clearActiveShoppingList: () =>
             dispatch(actions.clearActiveShoppingListFromStore()),
-        deleteShoppingListProduct: (shListId, productIndex) =>
+        deleteShoppingListProduct: (shListId, productKey) =>
             dispatch(
                 actions.deleteShoppingListProductFromBackend(
                     shListId,
-                    productIndex
+                    productKey
                 )
             ),
     };
@@ -75,6 +86,7 @@ const mapDispatchToProps = dispatch => {
 ShoppingListItem.propTypes = {
     getActiveShoppingList: PropTypes.func,
     clearActiveShoppingList: PropTypes.func,
+    deleteShoppingListProduct: PropTypes.func,
     activeShoppingList: PropTypes.shape({
         name: PropTypes.string,
         items: PropTypes.arrayOf(

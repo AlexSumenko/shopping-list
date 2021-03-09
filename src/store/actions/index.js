@@ -1,5 +1,6 @@
 export {
     addShoppingListToBackend,
+    addProductToShoppingListOnBackend,
     clearActiveShoppingListFromStore,
     clearShoppingListsFromStore,
     deleteShoppingListFromBackend,

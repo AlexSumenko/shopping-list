@@ -4,27 +4,26 @@ import PropTypes from 'prop-types';
 import './ShoppingListItemTable.scss';
 
 const ShoppingListItemTable = ({ deleted, shoppingList }) => {
-    console.log(shoppingList);
     let shoppingListTable = <p>Loading...</p>;
     if (shoppingList.items && shoppingList.items.length > 0) {
         shoppingListTable = (
             <table>
                 <tbody>
-                    {shoppingList.items.map((shListEl, idx) => {
+                    {shoppingList.items?.map(shListEl => {
                         const boughtClass = (
                             shListEl.bought && 'bought'
                         ).toString();
                         return (
-                            <tr key={`${shListEl.name}-${idx}`}>
+                            <tr key={shListEl.key}>
                                 <td className={boughtClass}>
                                     {shListEl.product}
                                 </td>
-                                <td>
+                                <td className='table__delete-column'>
                                     <button
                                         onClick={deleted.bind(
                                             this,
                                             shoppingList.key,
-                                            idx
+                                            shListEl.key
                                         )}
                                     >
                                         delete

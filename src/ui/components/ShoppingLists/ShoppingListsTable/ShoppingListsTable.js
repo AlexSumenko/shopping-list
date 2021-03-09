@@ -28,12 +28,14 @@ const ShoppingListsTable = ({ deleted, shoppingLists }) => {
                                         onShoppingListClick(shList.key)
                                     }
                                 >{`${shList.name} Total: ${
-                                    shList.items.length
-                                } Bought: ${shList.items.reduce(
-                                    (acc, el) => el.bought + acc,
-                                    0
-                                )}`}</td>
-                                <td>
+                                    shList.items?.length ?? 0
+                                } Bought: ${
+                                    shList.items?.reduce(
+                                        (acc, el) => el.bought + acc,
+                                        0
+                                    ) ?? 0
+                                }`}</td>
+                                <td className='table__delete-column'>
                                     <button
                                         onClick={deleted.bind(this, shList.key)}
                                     >
