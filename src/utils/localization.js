@@ -28,4 +28,8 @@ export const strings = {
         EN: 'Bought',
         RU: 'Куплено',
     },
+    authTitle: {
+        EN: 'Authorization',
+        RU: 'Авторизация',
+    },
 };

@@ -7,6 +7,8 @@ import * as actions from './store/actions/index';
 import { selectSelectedLanguage } from './store/selectors/shoppingLists';
 
 import LocaleContext from './utils/context/localeContext';
+
+import Auth from './ui/containers/Auth/Auth';
 import ShoppingList from './ui/containers/ShoppingLists/ShoppingLists';
 import ShoppingListItem from './ui/containers/ShoppingListItem/ShoppingListItem';
 
@@ -22,6 +24,7 @@ const App = ({ selectedLanguage, toggleLanguage }) => {
             <Switch>
                 <Route path='/' exact component={ShoppingList} />
                 <Route path='/:id/edit' component={ShoppingListItem} />
+                <Route path='/auth' component={Auth} />
                 <Redirect to='/' />
             </Switch>
         </LocaleContext.Provider>
