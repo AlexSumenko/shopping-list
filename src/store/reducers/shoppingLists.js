@@ -1,9 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
+import { locales } from '../../utils/localization';
 
 const initialState = {
     shoppingLists: [],
     activeShoppingList: {},
-    selectedLanguage: 'EN',
+    selectedLanguage: locales.EN,
 };
 
 const reducer = (state = initialState, action) => {

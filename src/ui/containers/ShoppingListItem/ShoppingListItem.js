@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import LocaleContext from '../../../utils/context/localeContext';
 import PropTypes from 'prop-types';
 
+import { strings } from '../../../utils/localization';
 import { selectActiveShoppingList } from '../../../store/selectors/shoppingLists';
 
 import Input from '../../components/common/Input/Input';
@@ -27,6 +29,8 @@ const ShoppingListItem = ({
         };
     }, [clearActiveShoppingList, getActiveShoppingList, match.params.id]);
 
+    const activeLanguage = useContext(LocaleContext);
+
     return (
         <>
             <NavBar
@@ -36,7 +40,7 @@ const ShoppingListItem = ({
 
             <main className='app'>
                 <Input
-                    placeholder='Add new product'
+                    placeholder={strings.addNewProduct[activeLanguage]}
                     added={productName =>
                         addProductToShoppingList(
                             activeShoppingList.key,

@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import LocaleContext from '../../../../utils/context/localeContext';
 
+import { strings } from '../../../../utils/localization';
 import { TrashIcon } from '../../common/Images/Images';
 
 import './ShoppingListItemTable.scss';
 
 const ShoppingListItemTable = ({ deleted, shoppingList, toggled }) => {
-    let shoppingListTable = <p>Loading...</p>;
+    const activeLanguage = useContext(LocaleContext);
+
+    let shoppingListTable = <p>{strings.loading[activeLanguage]}</p>;
     if (shoppingList.items && shoppingList.items.length > 0) {
         shoppingListTable = (
             <table>

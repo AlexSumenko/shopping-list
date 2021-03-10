@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import LocaleContext from '../../../../utils/context/localeContext';
 
+import { strings } from '../../../../utils/localization';
 import { TrashIcon } from '../../common/Images/Images';
 import { selectShoppingLists } from '../../../../store/selectors/shoppingLists';
 
@@ -10,11 +12,12 @@ import './ShoppingListsTable.scss';
 
 const ShoppingListsTable = ({ deleted, shoppingLists }) => {
     const history = useHistory();
+    const activeLanguage = useContext(LocaleContext);
     const onShoppingListClick = shListId => {
         history.push(`${shListId}/edit`);
     };
 
-    let shoppingListsTable = <p>Loading...</p>;
+    let shoppingListsTable = <p>{strings.loading[activeLanguage]}</p>;
 
     if (shoppingLists && shoppingLists.length > 0) {
         shoppingListsTable = (
@@ -28,9 +31,11 @@ const ShoppingListsTable = ({ deleted, shoppingLists }) => {
                                     onClick={() =>
                                         onShoppingListClick(shList.key)
                                     }
-                                >{`${shList.name} Total: ${
-                                    shList.items?.length ?? 0
-                                } Bought: ${
+                                >{`${shList.name} ${
+                                    strings.total[activeLanguage]
+                                }: ${shList.items?.length ?? 0} ${
+                                    strings.bought[activeLanguage]
+                                }: ${
                                     shList.items?.reduce(
                                         (acc, el) => el.bought + acc,
                                         0
