@@ -11,7 +11,7 @@ const BackButton = () => {
     };
 
     return (
-        <div className='back-button' onClick={onBackButtonClick}>
+        <div className='back-button clickable' onClick={onBackButtonClick}>
             {'\u2190'}
         </div>
     );

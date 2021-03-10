@@ -11,8 +11,6 @@ import Input from '../../components/common/Input/Input';
 import NavBar from '../../components/common/NavBar/NavBar';
 import ShoppingListItemTable from '../../components/ShoppingListItem/ShoppingListItemTable/ShoppingListItemTable';
 
-import './ShoppingListItem.scss';
-
 const ShoppingListItem = ({
     activeShoppingList,
     addProductToShoppingList,

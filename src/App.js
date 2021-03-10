@@ -46,6 +46,7 @@ const dispatchStateToProps = dispatch => {
 
 App.propTypes = {
     activeLanguage: PropTypes.string.isRequired,
+    toggleLanguage: PropTypes.func,
 };
 
 App.defaultProps = {

@@ -10,8 +10,6 @@ import Input from '../../components/common/Input/Input';
 import NavBar from '../../components/common/NavBar/NavBar';
 import ShoppingListsTable from '../../components/ShoppingLists/ShoppingListsTable/ShoppingListsTable';
 
-import './ShoppingLists.scss';
-
 const ShoppingList = ({
     addShoppingList,
     clearShoppingLists,

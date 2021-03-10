@@ -8,8 +8,6 @@ import { strings } from '../../../../utils/localization';
 import { TrashIcon } from '../../common/Images/Images';
 import { selectShoppingLists } from '../../../../store/selectors/shoppingLists';
 
-import './ShoppingListsTable.scss';
-
 const ShoppingListsTable = ({ deleted, shoppingLists }) => {
     const history = useHistory();
     const activeLanguage = useContext(LocaleContext);
