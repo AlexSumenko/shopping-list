@@ -14,6 +14,7 @@ export const clearActiveShoppingListFromStore = () => {
 };
 
 export const toggleSelectedLanguage = languageCode => {
+    localStorage.setItem('shl-lang', languageCode);
     return {
         type: actionTypes.TOGGLE_SELECTED_LANGUAGE,
         payload: languageCode,

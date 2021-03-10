@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import * as actions from './store/actions/index';
 import { selectSelectedLanguage } from './store/selectors/shoppingLists';
 
 import LocaleContext from './utils/context/localeContext';
@@ -10,7 +12,11 @@ import ShoppingListItem from './ui/containers/ShoppingListItem/ShoppingListItem'
 
 import './App.scss';
 
-const App = ({ selectedLanguage }) => {
+const App = ({ selectedLanguage, toggleLanguage }) => {
+    useEffect(() => {
+        toggleLanguage(localStorage.getItem('shl-lang'));
+    });
+
     return (
         <LocaleContext.Provider value={selectedLanguage}>
             <Switch>
@@ -28,6 +34,13 @@ const mapStateToProps = state => {
     };
 };
 
+const dispatchStateToProps = dispatch => {
+    return {
+        toggleLanguage: langCode =>
+            dispatch(actions.toggleSelectedLanguage(langCode)),
+    };
+};
+
 App.propTypes = {
     activeLanguage: PropTypes.string.isRequired,
 };
@@ -36,4 +49,4 @@ App.defaultProps = {
     activeLanguage: 'EN',
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, dispatchStateToProps)(App);
