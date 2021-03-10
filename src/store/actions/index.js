@@ -8,4 +8,5 @@ export {
     getShoppingListFromBackend,
     getShoppingListsFromBackend,
     toggleProductBoughtStatusOnBackend,
+    toggleSelectedLanguage,
 } from './shoppingLists';

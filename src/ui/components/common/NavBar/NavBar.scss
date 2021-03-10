@@ -11,10 +11,11 @@
     justify-content: center;
 
     &__container {
+        max-width: $shl-max-body-width;
         color: $shl-background-color;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         padding: 0 1rem;
         width: 100%;
     }

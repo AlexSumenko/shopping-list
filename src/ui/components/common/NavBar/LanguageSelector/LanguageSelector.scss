@@ -1,0 +1,7 @@
+@import '../../../../../assets/styles/variables';
+
+.language-selector select {
+    color: $shl-navbar-color;
+    border: none;
+    font-size: 16px;
+}

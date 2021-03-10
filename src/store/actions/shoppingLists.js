@@ -13,6 +13,13 @@ export const clearActiveShoppingListFromStore = () => {
     };
 };
 
+export const toggleSelectedLanguage = languageCode => {
+    return {
+        type: actionTypes.TOGGLE_SELECTED_LANGUAGE,
+        payload: languageCode,
+    };
+};
+
 const saveShoppingListsInStore = shoppingLists => {
     return {
         type: actionTypes.GET_SHOPPING_LISTS,

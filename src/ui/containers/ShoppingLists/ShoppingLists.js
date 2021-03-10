@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import PropTypes from 'prop-types';
-// import { httpRequest } from '../../../utils/fetch';
 
 import Input from '../../components/common/Input/Input';
 import NavBar from '../../components/common/NavBar/NavBar';
@@ -22,18 +21,9 @@ const ShoppingList = ({
             clearShoppingLists();
         };
     }, [clearShoppingLists, saveShoppingLists]);
-    // useEffect(() => {
-    //     httpRequest('POST', 'shopping-lists.json', {
-    //         name: 'TEST4',
-    //         items: [
-    //             { product: 'name1', bought: true },
-    //             { product: 'name2', bought: false },
-    //         ],
-    //     });
-    // });
     return (
         <>
-            <NavBar justify='center'>Shopping Lists</NavBar>
+            <NavBar heading='Shopping Lists' isBackButtonEnabled={false} />
             <main className='app'>
                 <Input
                     placeholder='Add new shopping list'

@@ -3,6 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     shoppingLists: [],
     activeShoppingList: {},
+    selectedLanguage: 'EN',
 };
 
 const reducer = (state = initialState, action) => {
@@ -32,6 +33,8 @@ const reducer = (state = initialState, action) => {
             };
         case actionTypes.CLEAR_ACTIVE_SHOPPING_LIST_FROM_STORE:
             return { ...state, activeShoppingList: {} };
+        case actionTypes.TOGGLE_SELECTED_LANGUAGE:
+            return { ...state, selectedLanguage: action.payload };
         default:
             return state;
     }

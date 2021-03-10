@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import { selectActiveShoppingList } from '../../../store/selectors/shoppingLists';
 
-import BackButton from '../../components/common/BackButton/BackButton';
 import Input from '../../components/common/Input/Input';
 import NavBar from '../../components/common/NavBar/NavBar';
 import ShoppingListItemTable from '../../components/ShoppingListItem/ShoppingListItemTable/ShoppingListItemTable';
@@ -30,13 +29,11 @@ const ShoppingListItem = ({
 
     return (
         <>
-            <NavBar justify='space-between'>
-                <>
-                    <BackButton />
-                    <div>{activeShoppingList.name}</div>
-                    <div></div>
-                </>
-            </NavBar>
+            <NavBar
+                heading={activeShoppingList.name}
+                isBackButtonEnabled={true}
+            />
+
             <main className='app'>
                 <Input
                     placeholder='Add new product'
