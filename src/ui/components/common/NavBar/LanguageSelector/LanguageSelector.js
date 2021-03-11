@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../../../store/actions/index';
 import LocaleContext from '../../../../../utils/context/localeContext';
@@ -6,14 +6,12 @@ import LocaleContext from '../../../../../utils/context/localeContext';
 import './LanguageSelector.scss';
 
 const LanguageSelector = ({ toggleLanguage }) => {
-    const selectRef = useRef();
     const selectedLanguage = useContext(LocaleContext);
     return (
         <div className='language-selector'>
             <select
                 value={selectedLanguage}
-                ref={selectRef}
-                onChange={() => toggleLanguage(selectRef?.current?.value)}
+                onChange={event => toggleLanguage(event.target.value)}
             >
                 <option key='EN' value='EN'>{`🇺🇸 EN`}</option>
                 <option key='RU' value='RU'>{`🇷🇺 RU`}</option>

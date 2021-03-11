@@ -11,10 +11,7 @@ const Auth = () => {
 
     return (
         <>
-            <NavBar
-                heading={strings.authTitle[activeLanguage]}
-                isBackButtonEnabled={false}
-            />
+            <NavBar heading={strings.authTitle[activeLanguage]} />
             <div className='app'>Works</div>
         </>
     );

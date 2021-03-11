@@ -1,12 +1,10 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import './Input.scss';
 
 const Input = ({ added, placeholder }) => {
     const inputRef = useRef('');
-
-    useLayoutEffect(() => inputRef.current.focus());
 
     const onInputSubmit = e => {
         e.preventDefault();
@@ -21,7 +19,8 @@ const Input = ({ added, placeholder }) => {
                 type='text'
                 ref={inputRef}
                 placeholder={placeholder}
-            ></input>
+                autoFocus
+            />
             <button className='input__button clickable' type='submit'>
                 {'\u2705'}
             </button>

@@ -31,10 +31,7 @@ const ShoppingListItem = ({
 
     return (
         <>
-            <NavBar
-                heading={activeShoppingList.name}
-                isBackButtonEnabled={true}
-            />
+            <NavBar heading={activeShoppingList.name} isBackButtonEnabled />
 
             <main className='app'>
                 <Input

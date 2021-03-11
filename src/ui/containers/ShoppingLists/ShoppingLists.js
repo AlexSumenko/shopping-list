@@ -27,10 +27,7 @@ const ShoppingList = ({
 
     return (
         <>
-            <NavBar
-                heading={strings.shoppingLists[activeLanguage]}
-                isBackButtonEnabled={false}
-            />
+            <NavBar heading={strings.shoppingLists[activeLanguage]} />
             <main className='app'>
                 <Input
                     placeholder={strings.addNewShoppingList[activeLanguage]}
