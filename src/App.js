@@ -16,7 +16,7 @@ import './App.scss';
 
 const App = ({ selectedLanguage, toggleLanguage }) => {
     useEffect(() => {
-        toggleLanguage(localStorage.getItem('shl-lang'));
+        toggleLanguage(localStorage.getItem('shl-lang') ?? selectedLanguage);
     });
 
     return (
