@@ -1,0 +1,14 @@
+@import '../../../../assets/styles/variables';
+
+.shopping-lists__table__span {
+    display: block;
+    margin: 0.1rem 0;
+}
+
+.shopping-list__name {
+    font-weight: bold;
+}
+
+.products--bought {
+    color: $shl-bought-color;
+}

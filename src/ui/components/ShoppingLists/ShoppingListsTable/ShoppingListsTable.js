@@ -8,6 +8,8 @@ import { strings } from '../../../../utils/localization';
 import { TrashIcon } from '../../common/Images/Images';
 import { selectShoppingLists } from '../../../../store/selectors/shoppingLists';
 
+import './ShoppingListsTable.scss';
+
 const ShoppingListsTable = ({ deleted, shoppingLists }) => {
     const history = useHistory();
     const activeLanguage = useContext(LocaleContext);
@@ -29,16 +31,23 @@ const ShoppingListsTable = ({ deleted, shoppingLists }) => {
                                     onClick={() =>
                                         onShoppingListClick(shList.key)
                                     }
-                                >{`${shList.name} ${
-                                    strings.total[activeLanguage]
-                                }: ${shList.items?.length ?? 0} ${
-                                    strings.bought[activeLanguage]
-                                }: ${
-                                    shList.items?.reduce(
-                                        (acc, el) => el.bought + acc,
-                                        0
-                                    ) ?? 0
-                                }`}</td>
+                                >
+                                    <span className='shopping-lists__table__span shopping-list__name'>
+                                        {shList.name}
+                                    </span>
+                                    <span className='shopping-lists__table__span'>{`${
+                                        strings.total[activeLanguage]
+                                    }: ${shList.items?.length ?? 0}`}</span>
+                                    <span className='shopping-lists__table__span products--bought'>
+                                        {`${strings.bought[activeLanguage]}: ${
+                                            shList.items?.reduce(
+                                                (acc, el) => el.bought + acc,
+                                                0
+                                            ) ?? 0
+                                        }
+                                    `}
+                                    </span>
+                                </td>
                                 <td className='table__delete-column'>
                                     <div
                                         className='clickable'

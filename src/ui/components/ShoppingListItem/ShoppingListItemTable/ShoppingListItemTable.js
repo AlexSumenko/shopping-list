@@ -17,7 +17,7 @@ const ShoppingListItemTable = ({ deleted, shoppingList, toggled }) => {
                 <tbody>
                     {shoppingList.items?.map(shListEl => {
                         const boughtClass = (
-                            shListEl.bought && 'bought'
+                            shListEl.bought && 'product--bought'
                         ).toString();
                         return (
                             <tr key={shListEl.key}>
