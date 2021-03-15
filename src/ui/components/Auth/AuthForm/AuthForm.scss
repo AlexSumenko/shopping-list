@@ -1,0 +1,27 @@
+.autht__input-form {
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &__container {
+        margin: 25%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        & label {
+            margin: 0.2rem 0;
+        }
+
+        & input {
+            margin-bottom: 1rem;
+        }
+    }
+}

@@ -13,15 +13,15 @@ const Input = ({ added, placeholder }) => {
     };
 
     return (
-        <form className='input' onSubmit={e => onInputSubmit(e)}>
+        <form className='input-form' onSubmit={e => onInputSubmit(e)}>
             <input
-                className='input__element'
+                className='input-form__element'
                 type='text'
                 ref={inputRef}
                 placeholder={placeholder}
                 autoFocus
             />
-            <button className='input__button clickable' type='submit'>
+            <button className='input-form__button clickable' type='submit'>
                 {'\u2705'}
             </button>
         </form>

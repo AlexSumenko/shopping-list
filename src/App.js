@@ -4,9 +4,9 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import * as actions from './store/actions/index';
-import { selectSelectedLanguage } from './store/selectors/shoppingLists';
-
 import LocaleContext from './utils/context/localeContext';
+import { selectSelectedLanguage } from './store/selectors/shoppingLists';
+import { ROUTES } from './utils/constants';
 
 import Auth from './ui/containers/Auth/Auth';
 import ShoppingList from './ui/containers/ShoppingLists/ShoppingLists';
@@ -22,10 +22,13 @@ const App = ({ selectedLanguage, toggleLanguage }) => {
     return (
         <LocaleContext.Provider value={selectedLanguage}>
             <Switch>
-                <Route path='/' exact component={ShoppingList} />
-                <Route path='/:id/edit' component={ShoppingListItem} />
-                <Route path='/auth' component={Auth} />
-                <Redirect to='/' />
+                <Route path={ROUTES.HOME_PAGE} exact component={ShoppingList} />
+                <Route
+                    path={ROUTES.SH_LIST_PAGE}
+                    component={ShoppingListItem}
+                />
+                <Route path={ROUTES.AUTH_PAGE} component={Auth} />
+                <Redirect to={ROUTES.HOME_PAGE} />
             </Switch>
         </LocaleContext.Provider>
     );
