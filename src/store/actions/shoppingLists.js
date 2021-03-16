@@ -68,7 +68,7 @@ export const getShoppingListsFromBackend = () => {
                         items: newItems,
                     });
                 }
-                dispatch(saveShoppingListsInStore(shoppingLists));
+                dispatch(saveShoppingListsInStore(shoppingLists.reverse()));
             })
             .catch(err => alert(err));
     };

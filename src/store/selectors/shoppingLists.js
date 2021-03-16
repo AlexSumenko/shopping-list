@@ -1,3 +1,3 @@
-export const selectShoppingLists = store => store.shoppingLists.reverse();
+export const selectShoppingLists = store => store.shoppingLists;
 export const selectActiveShoppingList = store => store.activeShoppingList;
 export const selectSelectedLanguage = store => store.selectedLanguage;
